@@ -31,4 +31,11 @@ class HousePricePredictor:
         print("Mean Squared Error:", mean_squared_error(y_test, y_pred))
         print("R2 Score:", r2_score(y_test, y_pred))
 
+    def save_model(self, model_path='model.pkl', scaler_path='scaler.pkl', encoder_path='label_encder.pkl'):
+        """Loads the model, scaler, and label encoder."""
+        self.model = joblib.load(model_path)
+        self.scaler = joblib.load(scaler_path)
+        self.label_encoder = joblib.load(encoder_path)
+        print("Model, Scaler, and Label Encoder loaded!")
+
 
