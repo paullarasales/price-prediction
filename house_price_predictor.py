@@ -38,4 +38,9 @@ class HousePricePredictor:
         self.label_encoder = joblib.load(encoder_path)
         print("Model, Scaler, and Label Encoder loaded!")
 
-
+    def predict(self, square_feet, bedrooms, bathrooms, location):
+        """Predicts the house price based on input features."""
+        location_encoded = self.label_encoder.transform([location])[0]
+        features = [[square_feet, bedrooms, bathrooms, location_encoded]]
+        scaled_features = self.scaler.transform(features)
+        return self.model.predict(scaled_features)[0]
